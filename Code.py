@@ -3,7 +3,7 @@ import pandas as pd
 #Show all columns and rows when printing dataframes
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
-excel_path="/Users/tasia/Documents/Carbon_Emissions_Project/National_Fossil_Carbon_Emissions_2025_v0.3.xlsx"
+excel_path="National_Fossil_Carbon_Emissions_2025_v0.3.xlsx"
 df=pd.read_excel(excel_path, engine="openpyxl")
 #Gathering stats on the data set
 print(df.head())
@@ -26,7 +26,11 @@ print(df_cleaned.describe())
 df_cleaned=df_cleaned.drop(columns=['Unnamed: 0'])
 #Calculate the country with the highest average fossil carbon emissions
 highest_avg_emissions=df_cleaned.mean().idxmax()
-print("The country with the highest average fossil carbon emissions is:", highest_avg_emissions)
+#print("The country with the highest average fossil carbon emissions is:", highest_avg_emissions)
+if highest_avg_emissions == "World":
+    print("The world's output is:", highest_avg_emissions)
+else:
+    print("The country with the highest average fossil carbon emissions is:", highest_avg_emissions)
 #Drop the column titled world 
 df_cleaned=df_cleaned.drop(columns=['World'])
 #Calculate the country with the highest average fossil carbon emissions after dropping world column
